@@ -44,5 +44,6 @@ for(tg in unique(chr)){
 }
 
 new.da=cbind(da, site=paste("sites",labs,sep=""), pos1=poss1, pos2=poss2)
-write.table(new.da, paste(args[1],"new_sites.txt",sep=""),row.names=F,col.names=F,sep="\t",quote=F)
+write.table(new.da, paste(args[1],"/new_sites.txt",sep=""),row.names=F,col.names=F,sep="\t",quote=F)
+
 

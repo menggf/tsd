@@ -11,14 +11,16 @@ if(@ARGV==0){
 my $output_dir;
 my $seq_file;
 my $min_fragment_length;
-my $insert_seq;
+my $insert_seq="na";
 my $genome_ref;
-my $cores;
+my $cores=1;
 my $min_read;
 my $ranking_type;
 my $min_merge_overlap=3;
 my $merge=0;
-my $cutoff_similarity=0.8
+my $cutoff_similarity=0.7;
+my $bwa=`which bwa`;
+chomp $bwa;
 
 for ( my $i = 0 ; $i <= $#ARGV ; $i++ ) {
 	if ( $ARGV[$i] eq '-d' ) {
@@ -45,11 +47,11 @@ for ( my $i = 0 ; $i <= $#ARGV ; $i++ ) {
 	elsif ( $ARGV[$i] eq '-r' ) {
 		$min_read = $ARGV[ ++$i ];
 	}
-	elsif ( $ARGV[$i] eq '-r' ) {
-		$min_read = $ARGV[ ++$i ];
-	}
 	elsif ( $ARGV[$i] eq '-o' ) {
 		$min_merge_overlap = $ARGV[ ++$i ];
+	}
+	elsif ( $ARGV[$i] eq '-e' ) {
+		$bwa = $ARGV[ ++$i ];
 	}
 	elsif ( $ARGV[$i] eq '-f' ) {
 		$cutoff_similarity = $ARGV[ ++$i ];
@@ -62,6 +64,7 @@ for ( my $i = 0 ; $i <= $#ARGV ; $i++ ) {
 		exit();
 	}
 }
+
 $ranking_type = "fragment" if(!defined($ranking_type));
 $min_read = 5 if(!defined($min_read));
 $min_fragment_length=200 if(!defined($min_fragment_length));
@@ -87,9 +90,13 @@ if(!-e $output_dir){
   mkdir($output_dir);
 }
 
-$genome_ref="/home/gmeng4/genome/hg38/hg38";
-system("perl fragment_assembly.pl $output_dir $seq_file $genome_ref $cores $min_fragment_length $insert_seq");
-system("perl assembler2.pl $output_dir $ranking_type $min_read $min_fragment_length $min_merge_overlap  $merge $cutoff_similarity");
+#$genome_ref="/home/meng/work/genome/hg38.fa";
+my $cmd1="perl fragment_assembly.pl $output_dir $seq_file $genome_ref $bwa $cores $min_fragment_length $insert_seq";
+my $cmd2="perl assembler.pl $output_dir $ranking_type $min_read $min_fragment_length $min_merge_overlap  $merge $cutoff_similarity";
+#print "$cmd1\n";
+system($cmd1);
+#print "$cmd2\n";
+system($cmd2);
 
 
 exit(0);
@@ -97,7 +104,8 @@ sub usage{
 	print <<'USAGE';
     Command: perl LongAssembly.pl -d output_dir -s seq.fq -l min_fragment_length
                   -i insert_seq.fa -G genome_ref_prefix -p cores -f overlap_score
-                  -r min_reads_num -R ranking_type -o min_merge_overlap -m -h
+                  -r min_reads_num -R ranking_type -o min_merge_overlap -e path_bwa
+                  -m -h
 				  
     LongAssembly is a de novo assembly tool for long reads, e.g. PacBio sequencing data.
     It is designed for the sequences with complex structure, e.g. the virus integrated 
@@ -107,8 +115,9 @@ sub usage{
         -d: the output directory (default: .)
         -s: the sequencing files in fastq format
         -G: the bwa genome reference prefix;
+        -e: the path of bwa
         -l: the minimum fragment length for bwa alignment (default: 200)
-        -f: the minimum score for fragment similarity (default: 0.8)
+        -f: the minimum score for fragment similarity (default: 0.7)
         -i: the extra sequences, e.g. the virus sequences integrated in the genome. (Optional)
         -p: the threads number for parallel computation
         -r: the minimum reads number for final output

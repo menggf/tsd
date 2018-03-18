@@ -4,7 +4,7 @@ package align;
 
 sub new{
 	my $class=shift;
-	my ($cs, $pr, $dd1, $dd2, $site_len, $min_fragment_length,$cutoff_similarity)=@_;
+	my ($cs, $pr, $dd1, $dd2, $site_len, $site_from, $site_to, $min_fragment_length,$cutoff_similarity)=@_;
 	my $self={};
 	my %can; # defined all the possible match fragments
 	my @al;
@@ -65,22 +65,22 @@ sub new{
 	my $wh_y=0;
 	for(my $q=1; $q <= $mm; $q++){
 		for(my $p=1; $p <= $nn; $p++){
-			my ($u, $d, $m)=(0,0,0);
+			my ($u, $d, $m)=(1,1,0);
 			my $a=($q-1)*3;
 			my $b=($p-1)*3;
 			if(defined($can{"$a\t$b"})){ #match
 				$m=1;
 			}
-			else{
-				$m=-1;
+			if(defined($breaks1{$a-1}) and $breaks1{$a-1}> 200 and abs($breaks1{$a-1} - $$site_len{$$cs[$q-1]}) <200  ){ #not allow gap
+				$u=0;
 			}
-			if(!$breaks1{($q-1)*3-1} and $q != $mm ){ #not allow gap
-				$u=1;
-			}
-			if($breaks2{($p-1)*3-1} and $p !=$nn){ #not allow gap
-				$d=1;
+			if(defined($breaks2{$b-1}) and $breaks2{$b-1}> 200 and abs($breaks2{$b-1} - $$site_len{$$pr[$p-1]}) <200 ){ #not allow gap
+				$d=0;
 			}
 			$matrix[$q][$p]=mymax($matrix[$q-1][$p-1] + $m, $matrix[$q][$p-1] - $d, $matrix[$q-1][$p] - $u, 0);
+			if($m==0 and $u==1 and $d==1){
+				$matrix[$q][$p]=0;
+			}
 			if($matrix[$q][$p] > $max_score){
 				$max_score=$matrix[$q][$p];
 				$wh_x=$q;
@@ -112,11 +112,12 @@ sub new{
 	
 	my $i=$wh_x;
 	my $j=$wh_y;
+	#print "$wh_x\t$wh_y\n";
 	my @xx;
 	my @yy;
 	push @xx,$i-1;
 	push @yy,$j-1;
-	while($i >= 1 and $j >= 1){
+	while($i > 1 and $j > 1){
 		last if($matrix[$i][$j]==0);
 		if($matrix[$i-1][$j-1] == $matrix[$i][$j] - 1){
 			$i=$i-1;
