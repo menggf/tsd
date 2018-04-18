@@ -8,8 +8,8 @@ Target sequencing discovery using long reads
                   -m -h
 				  
     LongAssembly is a de novo assembly tool for long reads, e.g. PacBio sequencing data.
-    It is designed for the sequences with complex structure, e.g. the virus integrated 
-    sequences.
+    It is designed for the sequences with complex genetic structure, e.g. the virus 
+    integrated sequences.
 	
     Usage:
         -d: the output directory (default: .)
@@ -22,7 +22,7 @@ Target sequencing discovery using long reads
         -p: the threads number for parallel computation
         -r: the minimum reads number for final output
         -R: the ranking type, either "length" or "fragment" (default: fragment)
-		-o: the minimum overlapped fragment for merging the reads
+	-o: the minimum overlapped fragment for merging the reads
         -m: merge the reads or not?
         -h: helps
 		
