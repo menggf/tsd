@@ -25,5 +25,8 @@ Target sequencing discovery using long reads
 	-o: the minimum overlapped fragment for merging the reads
         -m: merge the reads or not?
         -h: helps
-		
+	
+# Output：
+The output of TSD is many files stored in output directory (set by "-d"). 
+	
     Contact: Guofeng Meng(menggf@gmail.com)

@@ -1,7 +1,22 @@
+####################################################################################
+#  LongAssembly.pl @ TSD
+#  This is the interface file for TSD package.
+#
+#  Copyright (c) 2017- Guofeng Meng
+#
+#  EMAIL: menggf@gmail.com
+
+
 #!/usr/bin/perl -w
 use strict;
-#########################################
-
+my $lib; 
+BEGIN {
+  $lib = "lib"; # the file library path
+}
+use lib $lib; 
+use TSD::alignment;
+use TSD::assemblyReads;
+use TSD::assemblyCF;
 
 if(@ARGV==0){
 	usage();
@@ -21,6 +36,11 @@ my $merge=0;
 my $cutoff_similarity=0.7;
 my $bwa=`which bwa`;
 chomp $bwa;
+if($bwa=~/no bwa/){
+  print "Error: Please install bwa or add bwa to system \$PATH\n";
+	usage();
+	exit;
+}
 
 for ( my $i = 0 ; $i <= $#ARGV ; $i++ ) {
 	if ( $ARGV[$i] eq '-d' ) {
@@ -69,7 +89,7 @@ $ranking_type = "fragment" if(!defined($ranking_type));
 $min_read = 5 if(!defined($min_read));
 $min_fragment_length=200 if(!defined($min_fragment_length));
 $cores=1 if(!defined($cores));
-$insert_seq="na" if(!defined($insert_seq));
+
 
 if (!defined($output_dir)) {
 	print "Error: Please specifiy the output directory\n";
@@ -86,17 +106,38 @@ if (!defined($genome_ref)) {
 	usage();
 	exit;
 }
+if (!-e "$genome_ref.bwt") {
+	print "Error: Cannot find bwa genome reference: $genome_ref\n";
+	usage();
+	exit;
+}
 if(!-e $output_dir){
   mkdir($output_dir);
 }
 
+if(!defined($insert_seq)){
+  $insert_seq="na";
+}
+else{
+  open INPUT,$insert_seq or die "Did not find $insert_seq";
+  open OUT,">$output_dir/insert.fa" or die;
+  while(my $str=<INPUT>){
+    if($str=~/^>/){
+      print OUT ">insert\n";
+    }
+    else{
+      print OUT $str;
+    }
+  }
+  close INPUT;
+  close OUT;
+  $insert_seq="$output_dir/insert.fa";
+}
+
 #$genome_ref="/home/meng/work/genome/hg38.fa";
-my $cmd1="perl fragment_assembly.pl $output_dir $seq_file $genome_ref $bwa $cores $min_fragment_length $insert_seq";
-my $cmd2="perl assembler.pl $output_dir $ranking_type $min_read $min_fragment_length $min_merge_overlap  $merge $cutoff_similarity";
-#print "$cmd1\n";
-system($cmd1);
-#print "$cmd2\n";
-system($cmd2);
+TSD::alignment ->new($output_dir, $seq_file, $genome_ref, $bwa, $cores, $min_fragment_length, $insert_seq);
+TSD::assemblyReads->new($output_dir, $seq_file, $genome_ref, $bwa, $cores, $min_fragment_length, $insert_seq);
+TSD::assemblyCF->new($output_dir, $ranking_type, $min_read, $min_fragment_length, $min_merge_overlap,  $merge, $cutoff_similarity, $lib,$insert_seq);
 
 
 exit(0);
@@ -108,8 +149,8 @@ sub usage{
                   -m -h
 				  
     LongAssembly is a de novo assembly tool for long reads, e.g. PacBio sequencing data.
-    It is designed for the sequences with complex structure, e.g. the virus integrated 
-    sequences.
+    It is designed for the targeted sequences with complex structure, e.g. the virus 
+    integrated sequences.
 	
     Usage:
         -d: the output directory (default: .)
@@ -122,10 +163,15 @@ sub usage{
         -p: the threads number for parallel computation
         -r: the minimum reads number for final output
         -R: the ranking type, either "length" or "fragment" (default: fragment)
-		-o: the minimum overlapped fragment for merging the reads
+        -o: the minimum overlapped fragment for merging the reads
         -m: merge the reads or not?
         -h: helps
 		
+    Note: TSD support continuing analysis by automaticly detecting the output files in output 
+    directory. For examples, if "aln_genome.sam" exists in output directory, TSD will not do 
+    first-round genomic alignment again. Therefore, if users want to do the whole analysis from
+    beginning, please delete the output directory completely.
+    
     Contact: Guofeng Meng(menggf@gmail.com)
 USAGE
 }
