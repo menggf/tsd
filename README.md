@@ -22,7 +22,7 @@ Target sequencing discovery using long reads
         -p: the threads number for parallel computation
         -r: the minimum reads number for final output
         -R: the ranking type, either "length" or "fragment" (default: fragment)
-	-o: the minimum overlapped fragment for merging the reads
+        -o: the minimum overlapped fragment for merging the reads
         -m: merge the reads or not?
         -h: helps
 	
