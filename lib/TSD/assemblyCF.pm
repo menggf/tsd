@@ -151,8 +151,8 @@ sub new{
   open OUT,">$output_dir/report.txt" or die;
   my $counter=1;
   for(my $i=0;$i<@reads;$i++){
-  	#next if($reads[$i] ne "m54079_171127_175044/19333991/77908_82929");
-  	print "reads $i $counter\n";
+  	#next if($reads[$i] ne "m54079_171127_175044/20185230/18772_29123");
+  	#print "reads $i $counter\n";
   	next if(defined($used{$reads[$i]})); #skip it if it has included in previous steps
   	my %first; # where is the location
   	my $has=0; #how many supporting reads
@@ -319,10 +319,10 @@ sub new{
   		my $ext=join(",",@extend); #extend information
   		my $ext2=join(",",@ext_dir); # extended direction
   		if($extended){
-  			system("Rscript $lib/TSD/plot_fragment.r $output_dir/temp_files/temp_$i.txt $counter $reads[$i]/E $ext $ext2");
+  			system("Rscript $lib/TSD/plot_fragment.r $output_dir $output_dir/temp_files/temp_$i.txt $counter $reads[$i]/E $ext $ext2");
   		}
   		else{
-  			system("Rscript $lib/TSD/plot_fragment.r $output_dir/temp_files/temp_$i.txt $counter $reads[$i] $ext $ext2");
+  			system("Rscript $lib/TSD/plot_fragment.r $output_dir $output_dir/temp_files/temp_$i.txt $counter $reads[$i] $ext $ext2");
   		}
   		
   		#unlink("temp_files/temp_$i.txt");

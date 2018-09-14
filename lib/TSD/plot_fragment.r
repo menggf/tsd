@@ -4,9 +4,9 @@ args <- commandArgs(TRUE)
 #left=args[4]
 #ns=args[5]
 #right=args[6]
-#print(args)
+print(args)
 
-input<-scan(args[1],sep="\n", what=list(""), quiet=TRUE)[[1]]
+input<-scan(args[2],sep="\n", what=list(""), quiet=TRUE)[[1]]
 nn=length(input)
 s0=strsplit(input[1],"\t")[[1]];
 start = as.numeric(s0[3]);
@@ -17,10 +17,10 @@ nfrag=(length(s)+2)/6;
 
 #used=seq_len(nfrag)
 #n.used=length(used)
-seps=as.numeric(strsplit(args[4],",")[[1]])
-seps2=strsplit(args[5],",")[[1]]
-pdf(paste("seq_pic/seq",args[2],".pdf",sep=""), height=max(4, (nn-3)/1.5),width=max(7,1.5*nfrag))
-plot(c((start+1)*6-1,(end+1)*6+2),c(1,-2*(nn-2)), type="n", xlab="",ylab="",xaxt='n', yaxt='n', main=args[3])
+seps=as.numeric(strsplit(args[5],",")[[1]])
+seps2=strsplit(args[6],",")[[1]]
+pdf(paste(args[1],"/seq_pic/seq",args[3],".pdf",sep=""), height=max(4, (nn-3)/1.5),width=max(7,1.5*nfrag))
+plot(c((start+1)*6-1,(end+1)*6+2),c(1,-2*(nn-2)), type="n", xlab="",ylab="",xaxt='n', yaxt='n', main=args[4])
 mycols=vector()
 for(i in start:end+1){
 	if(s[(i-1)*6+2] =="1"){
