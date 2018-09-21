@@ -31,6 +31,7 @@ Target sequencing discovery using long reads
         -h: helps
 	
 # Output：
+
 The output of TSD is many files stored in output directory (set by "-d"). Important oness include:
 (1) output_dir/result.txt: the fragment location of long reads;
 (2) output_dir/report.txt: the genomic strcuture of SVs;
