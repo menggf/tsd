@@ -7,14 +7,17 @@ Target sequencing discovery using long reads
                   -r min_reads_num -R ranking_type -o min_merge_overlap -e path_bwa
                   -m -h
 				  
-    LongAssembly is a tool for genomic structural variant disocvery and visualization, 
-    using long reads, e.g. PacBio sequencing data.
-    It is designed for the sequences with complex genetic structure, e.g. the virus 
-    integrated sequences.
+    LongAssembly is a computational tool to identify the complex genomic structure 
+	of target sequencing using long reads, e.g. PacBio sequencing data.
+    It is especially designed for the sequences with complex genetic structure, 
+	e.g. the virus integrated sequences. 
+	
+	Before usage, users need to install BWA and build the genome reference index.
+	Only two parameters are mandatory: -s and -G.
 	
     Usage:
         -d: the output directory (default: .)
-        -s: the sequencing files in fastq format
+        -s: the sequencing files in fastq format;
         -G: the bwa genome reference prefix;
         -e: the path of bwa
         -l: the minimum fragment length for bwa alignment (default: 200)
@@ -28,6 +31,9 @@ Target sequencing discovery using long reads
         -h: helps
 	
 # Output：
-The output of TSD is many files stored in output directory (set by "-d"). 
-	
-    Contact: Guofeng Meng(menggf@gmail.com)
+The output of TSD is many files stored in output directory (set by "-d"). Important oness include:
+(1)output_dir/result.txt: the fragment location of long reads;
+(2)output_dir/report.txt: the genomic strcuture of SVs.
+(3)output_dir/seq_pic/*.pdf: the reads plot for SVs. One *.pdf is one SV.
+
+# Contact: menggf@gmail.com
