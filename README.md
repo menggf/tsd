@@ -36,4 +36,4 @@ The output of TSD is many files stored in output directory (set by "-d"). Import
 (2)output_dir/report.txt: the genomic strcuture of SVs.
 (3)output_dir/seq_pic/*.pdf: the reads plot for SVs. One *.pdf is one SV.
 
-# Contact: menggf@gmail.com
+Contact: menggf@gmail.com
