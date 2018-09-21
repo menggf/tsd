@@ -7,7 +7,8 @@ Target sequencing discovery using long reads
                   -r min_reads_num -R ranking_type -o min_merge_overlap -e path_bwa
                   -m -h
 				  
-    LongAssembly is a de novo assembly tool for long reads, e.g. PacBio sequencing data.
+    LongAssembly is a tool for genomic structural variant disocvery and visualization, 
+    using long reads, e.g. PacBio sequencing data.
     It is designed for the sequences with complex genetic structure, e.g. the virus 
     integrated sequences.
 	
