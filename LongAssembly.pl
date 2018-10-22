@@ -115,7 +115,7 @@ if(!-e $output_dir){
   mkdir($output_dir);
 }
 
-if(!defined($insert_seq)){
+if(!defined($insert_seq) or $insert_seq=="na"){
   $insert_seq="na";
 }
 else{
