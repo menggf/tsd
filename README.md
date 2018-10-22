@@ -40,20 +40,29 @@ Target sequencing discovery using long reads
     
 # Important:
 
-   TSD support continual analysis. That is to say, if some error happened during analysis, TSD can use the
-   bwa alignment file (e.g. alignment_genome.sam) in previous analysis. Therefore, if TSD find \*.sam files
-   will not run bwa alignment again. Therefore, if bwa alignment failed in previous analysis, \*.sam files 
-   in output_directory should be delete or delelte the whole output_directory!. 
+   TSD support continual analysis. That is to say, if some errors happened during previous analysis, TSD can
+   restart the analysis by automaticsly detecting the temporary output files. For example, if TSD find \*.sam
+   files, TSD will not run bwa alignment again. However, if bwa alignment failed in previous analysis, the 
+   imcomplete\*.sam files in output_directory should be deleted, or to delete the whole output_directory!!! 
 
 # Q & A：
     1. When to use TSD?
      A: When (a) the studied genome (e.g. Hela genome), transgene vector or virus (e.g. HBV) has complex 
-     recombination or rearrangement.  (b) Long reads is sequenced (e.g. PacBio Platform), TSD can be used
-     to identify the composition of the complex structure. 
+     recombination or rearrangement, which makes it impossible to uncover the complex organization stucture 
+     using NGS or read it out directly using long reads (e.g. PacBio).  (b) Long reads is sequenced (e.g. 
+     PacBio Platform), TSD can be used to identify the composition of the complex structure.
+     One example is displayed in Figure 1 in the submitted paper (link), where the HBV viruses have complex 
+     rearrangement before their integration in the human genome. In this example, the integrated HBV includes
+     6 HBV fragments, spanning about 3000 bp. In PacBio sequencing, no long read covers the whole region. 
+     TSD recovers the HBV rearrangement profile by assemblying multiple PacBio reads. 
      
     2. What is a DNA fragment?
      A: A DNA fragment is a a piece of DNA, which can be unique mapped to the genome or known DNA, e.g. 
-     part of virus genome. The complex stuctural variants are composed of the combination of DNA fragments.
+     part of virus genome. The DNA fragments are usually generated during the DNA rearrangement. The 
+     complex stuctural variants are composed of the combination of DNA fragments.
      
-    3. Who to contact for any problem? 
+    3. Error: cannot find bwa in alignment
+     A: Before usage, bwa should be installed and its location added into the $PATH variable in Linux system.
+     
+    4. Who to contact for any problem? 
      A: Send email to Guofeng Meng(menggf@gmail.com)
