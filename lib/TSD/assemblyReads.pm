@@ -33,17 +33,17 @@ sub new{
   for(my $i=0;$i< 2000;$i=$i+6){
     push @rsd, $i+4;
   }
-  
+  #print $range{"m54079_171127_175044/49677067/44745_50183"},"\n";
   my $insert_ref="$output_dir/insert_ref/insert"; 
   my $pp=0;
   while(-s "$output_dir/temp_files/temp_seq_$pp.fa" !=0){
   	print "Begin $pp-round alignment..\n";
-  	my $cmd1="$bwa mem -t $cores -x pacbio -Y -v 3 -o $output_dir/temp_files/temp_genome_$pp.sam $genome_ref $output_dir/temp_files/temp_seq_$pp.fa";
-  	print $cmd1,"\n";
+  	my $cmd1="$bwa mem -t $cores -x pacbio -Y -v 1 -o $output_dir/temp_files/temp_genome_$pp.sam $genome_ref $output_dir/temp_files/temp_seq_$pp.fa";
+  	#print $cmd1,"\n";
   	system($cmd1) == 0 or die;
   	if($insert_seq  ne "na"){ 
-  		my $cmd2="$bwa mem -t $cores -x pacbio -Y -v 3 -o $output_dir/temp_files/temp_insert_$pp.sam $insert_ref $output_dir/temp_files/temp_seq_$pp.fa";
-  		print $cmd1,"\n";
+  		my $cmd2="$bwa mem -t $cores -x pacbio -Y -v 1 -o $output_dir/temp_files/temp_insert_$pp.sam $insert_ref $output_dir/temp_files/temp_seq_$pp.fa";
+  		#print $cmd1,"\n";
   		system($cmd2) == 0 or die;
   	}
   	print "Finishing $pp-round alignment.\n";
@@ -77,7 +77,10 @@ sub new{
   	foreach my $str (@ids){
   		die "$str" if($str !~/(\S+)#(\S+)$/);
   		my $id=$1;
-  		my $tag=$2;	
+  		my $tag=$2;
+  		#if($id eq "m54079_171127_175044/49677067/44745_50183"){
+  		#	print "before:$range{$id}\n";
+  		#}	
   		my @rr=split(/\t/,$range{$id});
   		my %has;
   		if(@rr > 4){
@@ -502,6 +505,9 @@ sub new{
   				}
   			}
   		}
+  		#if($id eq "m54079_171127_175044/49677067/44745_50183"){
+  		#	print "after:$range{$id}\n";
+  		#}
   	}
   	close(TEMP);
   }

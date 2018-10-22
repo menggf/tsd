@@ -2,7 +2,7 @@ clustervector<-function(x, rg, min.split.reads=1){
 	cl=rep(0,length(x));
 	zz=0;
 	center=vector();
-	while(length(cl[cl==0])>0){
+	while(length(cl[cl==0]) > 0){
 		zz=zz+1;
 		tx=table(x[cl==0]);
 		cc=as.numeric(names(which.max(tx)))
@@ -17,16 +17,18 @@ clustervector<-function(x, rg, min.split.reads=1){
 }
 args <- commandArgs(TRUE)
 
-da<-read.table(paste(args[1],"/sites.txt",sep=""), sep="\t")
+da<-read.table(paste(args[1],"/sites.txt",sep=""), sep="\t", fill=TRUE)
+da=da[!is.na(as.vector(da$V1)) & as.vector(da$V1) != "" & !is.na(as.vector(da$V2)) & !is.na(as.vector(da$V3)) ,]
 chr=as.vector(da$V1)
-from=as.vector(da$V2);
-to=as.vector(da$V3);
+from=as.numeric(as.vector(da$V2));
+to=as.numeric(as.vector(da$V3));
 
 cc=0;
 labs=rep(0, length(chr))
 poss1=rep(-1, length(chr))
 poss2=rep(-1, length(chr))
 for(tg in unique(chr)){
+   #print(tg)
   wh=chr==tg;
   cl1=vector()
   cl2=vector()

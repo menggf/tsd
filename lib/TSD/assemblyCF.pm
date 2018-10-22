@@ -61,7 +61,7 @@ sub new{
   
   
   system("Rscript $lib/TSD/cluster_fragment.r $output_dir"); # temp
-  
+  #print "ok\n";
   open DATA,"$output_dir/new_sites.txt" or die;
   my %ann_from;
   my %ann_to;
