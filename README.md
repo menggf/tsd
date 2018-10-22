@@ -38,10 +38,11 @@ Target sequencing discovery using long reads
     (3) output_dir/seq_pic/*.pdf: the reads plot for SVs. One *.pdf is one SV;
     
 # Q & A：
-    (1) When to use TSD?
-     A: When (a) the studied genome (e.g. Hela genome), transgene vector or virus (e.g. HBV) has complex recombination or rearrangement; (b) Long reads is sequenced (e.g. PacBio Platform)
-    (2) What is a DNA fragment?
-     A: A DNA fragment is a a piece of DNA, which can be unique mapped to the genome or known DNA
+    1. When to use TSD?
+     A: When (a) the studied genome (e.g. Hela genome), transgene vector or virus (e.g. HBV) has complex recombination or rearrangement.  (b) Long reads is sequenced (e.g. PacBio Platform), TSD can be used to identify the composition of the complex structure. 
      
+    2. What is a DNA fragment?
+     A: A DNA fragment is a a piece of DNA, which can be unique mapped to the genome or known DNA, e.g. part of virus genome. The complex stuctural variants are composed of the combination of DNA fragments.
      
-Contact: menggf@gmail.com
+    3. Who to contact for any problem? 
+     A: Send email to Guofeng Meng(menggf@gmail.com)
