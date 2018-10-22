@@ -36,5 +36,11 @@ Target sequencing discovery using long reads
     (1) output_dir/result.txt: the fragment location of long reads;
     (2) output_dir/report.txt: the genomic strcuture of SVs;
     (3) output_dir/seq_pic/*.pdf: the reads plot for SVs. One *.pdf is one SV;
-
+    
+# Q & A：
+    (1) When to use TSD?
+     A: When (a) the studied genome (e.g. Hela genome), transgene vector or virus (e.g. HBV) has complex recombination or rearrangement; (b) Long reads is sequenced (e.g. PacBio Platform)
+    (2) 
+     
+     
 Contact: menggf@gmail.com
