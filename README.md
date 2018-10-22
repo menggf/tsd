@@ -9,7 +9,7 @@ Target sequencing discovery using long reads
 				  
     LongAssembly is a computational tool to identify the complex genomic structure 
 	of targeted sequence using long reads, e.g. PacBio sequencing data.
-    It is especially designed for the sequences with complex genetic structure, 
+    It is especially designed for the sequences with complex genomic structure, 
 	e.g. the virus integrated sequences. 
 	
 	Before usage, users need to install BWA and build the genome reference index.
