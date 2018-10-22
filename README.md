@@ -8,7 +8,7 @@ Target sequencing discovery using long reads
                   -m -h
 				  
     LongAssembly is a computational tool to identify the complex genomic structure 
-	of target sequencing using long reads, e.g. PacBio sequencing data.
+	of targeted sequence using long reads, e.g. PacBio sequencing data.
     It is especially designed for the sequences with complex genetic structure, 
 	e.g. the virus integrated sequences. 
 	
@@ -35,7 +35,15 @@ Target sequencing discovery using long reads
     The output of TSD is many files stored in output directory (set by "-d"). Important oness include:
     (1) output_dir/result.txt: the fragment location of long reads;
     (2) output_dir/report.txt: the genomic strcuture of SVs;
-    (3) output_dir/seq_pic/*.pdf: the reads plot for SVs. One *.pdf is one SV;
+    (3) output_dir/seq_pic/*.pdf: the reads plot for SVs. One *.pdf is one SV. In each plot, the complex SVs
+        are displayed as a line of fragments. 
+    
+# Important:
+
+   TSD support continual analysis. That is to say, if some error happened during analysis, TSD can use the
+   bwa alignment file (e.g. alignment_genome.sam) in previous analysis. Therefore, if TSD find \*.sam files
+   will not run bwa alignment again. Therefore, if bwa alignment failed in previous analysis, \*.sam files 
+   in output_directory should be delete or delelte the whole output_directory!. 
 
 # Q & A：
     1. When to use TSD?
