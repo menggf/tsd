@@ -53,7 +53,7 @@ Target sequencing discovery using long reads
      PacBio Platform), TSD can be used to identify the composition of the complex structure.
      One example is displayed in Figure 1 in the submitted paper (link), where the HBV viruses have complex 
      rearrangement before their integration in the human genome. In this example, the integrated HBV includes
-     6 HBV fragments, spanning about 3000 bp. In PacBio sequencing, no long read covers the whole region. 
+     6 HBV fragments, spanning about 3000 bp. In PacBio sequencing data, no long read covers the whole region. 
      TSD recovers the HBV rearrangement profile by assemblying multiple PacBio reads. 
      
     2. What is a DNA fragment?
