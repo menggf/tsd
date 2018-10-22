@@ -67,7 +67,7 @@ Target sequencing discovery using long reads
     4. "-i" option is necessay for TSD?
      "-i" option is an optioinal setting, to specifiy the targeted sequences. TSD is designed for targeted 
      sequence discovery which allow identifying the genomic structure of targeted sequence. Therefore, "-i" 
-     is highly recommended for TSD and it has many benefits: (1) reduced the analysis time comsumption; 
+     is highly recommended for TSD and it has many benefits: (1) to reduce the analysis time comsumption; 
      (2) less-redundent output. (3) good visualization to the output results.
     
     5.How to mask the homologous regions？
