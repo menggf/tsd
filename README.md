@@ -47,10 +47,11 @@ Target sequencing discovery using long reads
 
 # Q & A：
     1. When to use TSD?
-     A: When (a) the studied genome (e.g. Hela genome), transgene vector or virus (e.g. HBV) has complex 
-     recombination or rearrangement, which makes it impossible to uncover the complex organization stucture 
-     using NGS or read it out directly using long reads (e.g. PacBio).  (b) Long reads is sequenced (e.g. 
-     PacBio Platform), TSD can be used to identify the composition of the complex structure.
+     A: When (a) the studied genome has complex recombination or rearrangement, or the genome is injected with 
+     transgene vectors or infected by viruses (e.g. HBV), the host genome usually carries complex structure,
+     e.g. multiple rearrangements in a single integration, which makes it impossible to uncover the complex 
+     organization stucture using NGS or read it out directly using long reads (e.g. PacBio).  (b) Long reads 
+     is sequenced (e.g. PacBio Platform), TSD can be used to identify the composition of the complex structure.
      One example is displayed in Figure 1 in the submitted paper (link), where the HBV viruses have complex 
      rearrangement before their integration in the human genome. In this example, the integrated HBV includes
      6 HBV fragments, spanning about 3000 bp. In PacBio sequencing data, no long read covers the whole region. 
