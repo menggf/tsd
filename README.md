@@ -65,13 +65,13 @@ Target sequencing discovery using long reads
      A: Before usage, bwa should be installed and its location added into the $PATH variable in Linux system.
     
     4. "-i" option is necessay for TSD?
-     "-i" option is an optioinal setting, to specifiy the targeted sequences. TSD is designed for targeted 
+     A: "-i" option is an optioinal setting, to specifiy the targeted sequences. TSD is designed for targeted 
      sequence discovery which allow identifying the genomic structure of targeted sequence. Therefore, "-i" 
      is highly recommended for TSD and it has many benefits: (1) to reduce the analysis time comsumption; 
      (2) less-redundent output. (3) good visualization to the output results.
     
     5.How to mask the homologous regions？
-     The targeted sequences should firstly be checked using blast. For low repeat regions, e.g. SINEs, 
+     A: The targeted sequences should firstly be checked using blast. For low repeat regions, e.g. SINEs, 
      Repeatmasker can help to mask such regions. If transgene vector carries homogous sequeces, the bases
      of homogous regions can be replaced with "N" based on their blast results.
      
