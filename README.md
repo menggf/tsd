@@ -38,7 +38,7 @@ Target sequencing discovery using long reads
     (3) output_dir/seq_pic/*.pdf: the reads plot for SVs. One *.pdf is one SV. In each plot, the complex SVs
         are displayed as a line of fragments. 
     
-# Important:
+# Note:
 
    TSD support continual analysis. That is to say, if some errors happened during previous analysis, TSD can
    restart the analysis by automaticsly detecting the temporary output files. For example, if TSD find \*.sam
