@@ -7,7 +7,7 @@ Target sequencing discovery using long reads
                   -r min_reads_num -R ranking_type -o min_merge_overlap -e path_bwa
                   -m -h
 				  
-    LongAssembly is a computational tool to identify the complex genomic structure 
+    TSD is a computational tool to identify the complex genomic structure 
 	of targeted sequence using long reads, e.g. PacBio sequencing data.
     It is especially designed for the sequences with complex genomic structure, 
 	e.g. the virus integrated sequences. 
