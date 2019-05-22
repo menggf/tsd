@@ -12,7 +12,8 @@ Target sequencing discovery using long reads
     It is especially designed for the sequences with complex genomic structure, 
 	e.g. the virus integrated sequences. 
 	
-	Before usage, users need to install BWA and build the genome reference index.
+	Before usage, users need to install (1) BWA and build the genome reference index.
+	and (2) R for drawing the plots.
 	Only two parameters are mandatory: -s and -G.
 	
     Usage:
