@@ -23,7 +23,7 @@ Target sequencing discovery using long reads
         -e: the path of bwa
         -l: the minimum fragment length for bwa alignment (default: 200)
         -f: the minimum score for fragment similarity (default: 0.7)
-        -i: the extra sequences, e.g. the virus sequences integrated in the genome. (Optional)
+        -i: the extra sequences, e.g. the virus sequences integrated in the genome. (Optional but recommend)
         -p: the threads number for parallel computation
         -r: the minimum reads number for final output
         -R: the ranking type, either "length" or "fragment" (default: fragment)
