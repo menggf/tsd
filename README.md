@@ -77,5 +77,8 @@ Target sequencing discovery using long reads
      Repeatmasker can help to mask such regions. If transgene vector carries homogous sequeces, the bases
      of homogous regions can be replaced with "N" based on their blast results.
      
-    6. Who to contact for any problem? 
+    6. How to interprete the outputs?
+     A: One demo interpretation is avialable in sampleData/*. Please read it.
+     
+    7. Who to contact for any problem? 
      A: Send email to Guofeng Meng(menggf@gmail.com)
