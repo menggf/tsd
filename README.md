@@ -1,5 +1,7 @@
 # tsd
-Target sequencing discovery using long reads
+It is a tool designed to identify the complex genomic structure of target sequences,
+e.g. the complex integration and rearrangements due to virus infection, transgene 
+injection in animals. It works for long reads, e.g. PacBio sequencing data.
 # usage:
 
  Command: perl LongAssembly.pl -d output_dir -s seq.fq -l min_fragment_length
