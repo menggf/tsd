@@ -18,10 +18,15 @@ clustervector<-function(x, rg, min.split.reads=1){
 args <- commandArgs(TRUE)
 
 da<-read.table(paste(args[1],"/sites.txt",sep=""), sep="\t", fill=TRUE)
-da=da[!is.na(as.vector(da$V1)) & as.vector(da$V1) != "" & !is.na(as.vector(da$V2)) & !is.na(as.vector(da$V3)) ,]
+da=da[!is.na(as.vector(da$V1)) & as.vector(da$V1) != "" & !is.na(as.vector(da$V2)) & !is.na(as.vector(da$V3))  ,]
 chr=as.vector(da$V1)
 from=as.numeric(as.vector(da$V2));
 to=as.numeric(as.vector(da$V3));
+tag=!is.na(from) & !is.na(to)
+chr=chr[tag]
+to=to[tag]
+from=from[tag]
+
 
 cc=0;
 labs=rep(0, length(chr))
@@ -45,7 +50,7 @@ for(tg in unique(chr)){
   poss2[wh]=cl2$center[cl2$cl]
 }
 
-new.da=cbind(da, site=paste("sites",labs,sep=""), pos1=poss1, pos2=poss2)
+new.da=cbind(da[tag,], site=paste("sites",labs,sep=""), pos1=poss1, pos2=poss2)
 write.table(new.da, paste(args[1],"/new_sites.txt",sep=""),row.names=F,col.names=F,sep="\t",quote=F)
 
 

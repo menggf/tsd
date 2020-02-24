@@ -33,7 +33,7 @@ sub new{
   }
   
   if(!-e "$output_dir/aln_genome.sam"){
-    	my $cmd="$bwa mem -t $cores -x pacbio -Y -v 1 -o $output_dir/aln_genome.sam $genome_ref $seq_file";
+    	my $cmd="$bwa mem -t $cores -x pacbio -Y -v 1 $genome_ref $seq_file > $output_dir/aln_genome.sam";
     	system($cmd)==0 or die;
   }
   
@@ -45,7 +45,7 @@ sub new{
     	system($cmd)==0 or die;
     }
     if(!-e "$output_dir/aln_insert.sam"){
-    	my $cmd="$bwa mem -t $cores -x pacbio -Y -v 1 -o $output_dir/aln_insert.sam $insert_ref $seq_file";
+    	my $cmd="$bwa mem -t $cores -x pacbio -Y -v 1 $insert_ref $seq_file > $output_dir/aln_insert.sam";
     	system($cmd)==0 or die;
     }
   }

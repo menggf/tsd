@@ -38,11 +38,11 @@ sub new{
   my $pp=0;
   while(-s "$output_dir/temp_files/temp_seq_$pp.fa" !=0){
   	print "Begin $pp-round alignment..\n";
-  	my $cmd1="$bwa mem -t $cores -x pacbio -Y -v 1 -o $output_dir/temp_files/temp_genome_$pp.sam $genome_ref $output_dir/temp_files/temp_seq_$pp.fa";
+  	my $cmd1="$bwa mem -t $cores -x pacbio -Y -v 1  $genome_ref $output_dir/temp_files/temp_seq_$pp.fa > $output_dir/temp_files/temp_genome_$pp.sam";
   	#print $cmd1,"\n";
   	system($cmd1) == 0 or die;
   	if($insert_seq  ne "na"){ 
-  		my $cmd2="$bwa mem -t $cores -x pacbio -Y -v 1 -o $output_dir/temp_files/temp_insert_$pp.sam $insert_ref $output_dir/temp_files/temp_seq_$pp.fa";
+  		my $cmd2="$bwa mem -t $cores -x pacbio -Y -v 1  $insert_ref $output_dir/temp_files/temp_seq_$pp.fa > $output_dir/temp_files/temp_insert_$pp.sam";
   		#print $cmd1,"\n";
   		system($cmd2) == 0 or die;
   	}
