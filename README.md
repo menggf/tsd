@@ -84,3 +84,6 @@ injection in animals. It works for long reads, e.g. PacBio sequencing data.
      
     7. Who to contact for any problem? 
      A: Send email to Guofeng Meng(menggf@gmail.com)
+
+#cite it:
+Guofeng Meng, Ying Tan, Yue Fan, Yan Wang, Guang Yang, Gregory Fanning, Yang Qiu, TSD: A Computational Tool To Study the Complex Structural Variants Using PacBio Targeted Sequencing Data, G3 Genes|Genomes|Genetics, Volume 9, Issue 5, 1 May 2019, Pages 1371–1376, https://doi.org/10.1534/g3.118.200900
