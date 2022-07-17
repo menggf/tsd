@@ -55,7 +55,7 @@ injection in animals. It works for long reads, e.g. PacBio sequencing data.
      e.g. multiple rearrangements in a single integration, which makes it impossible to uncover the complex 
      organization stucture using NGS or read it out directly using long reads (e.g. PacBio).  (b) Long reads 
      is sequenced (e.g. PacBio Platform), TSD can be used to identify the composition of the complex structure.
-     One example is displayed in Figure 1 in the published paper <a href=https://doi.org/10.1534/g3.118.200900>link</a>, where the HBV viruses have complex 
+     One example is displayed in Figure 1 in [the published paper](https://doi.org/10.1534/g3.118.200900), where the HBV viruses have complex 
      rearrangement before their integration in the human genome. In this example, the integrated HBV includes
      6 HBV fragments, spanning about 3000 bp. In PacBio sequencing data, no long read covers the whole region. 
      TSD recovers the HBV rearrangement profile by assemblying multiple PacBio reads. 
